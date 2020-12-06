@@ -7,6 +7,7 @@ namespace PISLabs.Models
 {
     public class TicketsData
     {
+        public Guid Id { get; set; } = Guid.Empty;
         public int FlightNumber { get; set; }
         public string From { get; set; }
         public string To { get; set; }
