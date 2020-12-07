@@ -9,11 +9,18 @@ using PISLabs.Storage;
 
 namespace PISLabs.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class TicketsController : ControllerBase
     {
-        private static IStorage<TicketsData> _memCache = new MemCache();
+        private IStorage<TicketsData> _memCache;
+
+        public TicketsController(IStorage<TicketsData> memCache)
+        {
+            _memCache = memCache;
+        }
+
         [HttpGet]
         public ActionResult<IEnumerable<TicketsData>> Get()
         {
