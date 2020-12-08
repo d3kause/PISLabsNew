@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <Authors>Valeriy Igonin, Julia Asharafulina</Authors>
     <Company>NSTU</Company>
-    <Product>Lab 3</Product>
+    <Product>Lab 7</Product>
     <PackageId>MyApp</PackageId>
   </PropertyGroup>
 
