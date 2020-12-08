@@ -7,6 +7,10 @@
     <Product>Lab 3</Product>
     <PackageId>MyApp</PackageId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Dockerfile" />
+  </ItemGroup>
   
   
   <ItemGroup>
