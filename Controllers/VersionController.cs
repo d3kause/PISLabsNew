@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
 using PISLabs.Models;
+using Serilog;
 
 namespace PISLabs.Controllers
 {
@@ -16,12 +17,16 @@ namespace PISLabs.Controllers
         [HttpGet]
         public ActionResult<string> Get()
         {
+            Log.Information("Get app information");
             var versionInfo = new Models.Version
             {
                 Company = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyCompanyAttribute>().Company,
                 Product = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyProductAttribute>().Product,
                 ProductVersion = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion
             };
+
+            Log.Information($"Acquired version is {versionInfo.ProductVersion}");
+            Log.Debug($"Full version info: {@versionInfo}");
             return Ok(versionInfo);
         }
     }

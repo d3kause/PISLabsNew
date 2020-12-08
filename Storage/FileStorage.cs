@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using PISLabs.Models;
+using Serilog;
 
 namespace PISLabs.Storage
 {
@@ -41,6 +42,7 @@ namespace PISLabs.Storage
                 }
                 catch (Exception ex)
                 {
+                    Log.Error($"Cannot load data from file {FileName}:\r\n{ex.Message}");
                     throw new FileLoadException($"Cannot load data from file {FileName}:\r\n{ex.Message}");
                 }
             }
@@ -51,6 +53,5 @@ namespace PISLabs.Storage
             var serializedContents = JsonConvert.SerializeObject(All);
             File.WriteAllText(FileName, serializedContents);
         }
-
     }
 }

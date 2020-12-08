@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using PISLabs.Storage;
 using PISLabs.Models;
+using Serilog;
 
 namespace PISLabs
 {
@@ -29,6 +30,7 @@ namespace PISLabs
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            ConfigureLogger();
 
             switch (Configuration["Storage:Type"].ToStorageEnum())
             {
@@ -59,5 +61,16 @@ namespace PISLabs
             app.UseHttpsRedirection();
             app.UseMvc();
         }
+
+        private void ConfigureLogger()
+        {
+            var log = new LoggerConfiguration()
+                .WriteTo.Console()
+                .WriteTo.File("logs\\PISLabs.log", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+
+            Log.Logger = log;
+        }
+
     }
 }
