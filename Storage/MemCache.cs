@@ -9,6 +9,7 @@ namespace PISLabs.Storage
     {
         private object _sync = new object();
         private List<TicketsData> _memCache = new List<TicketsData>();
+        public string StorageType => $"{nameof(MemCache)}";
         public TicketsData this[Guid id]
         {
             get
